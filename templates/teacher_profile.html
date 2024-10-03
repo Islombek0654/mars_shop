@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>Teacher profile</h1>
+
+  <h3>{{ data.username }}</h3>
+
+  {% for group in groups %}
+  <ul class="row">
+    <li class="col-md-3 list-item d-inline">
+      <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ group.name }}</h5>
+<a href="{% url 'group-detail' group.id %}" class="btn btn-primary">Guruhga o'tish</a>
+  </div>
+</div>
+    </li>
+  </ul>
+  {% endfor %}
+
+
+{% endblock %}

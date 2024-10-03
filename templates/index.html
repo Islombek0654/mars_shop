@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center">MARS Shop</h1>
+<div class="цcontainer">
+    <div class="row">
+        {% for product in products %}
+        <div class="card ms-3" style="width: 18rem;">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.price }} Coins</p>
+                <p class="card-text">{{ product.count }}</p>
+                <div class="container mt-4">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#purchaseModal">
+        Sotib olish
+    </button>
+</div>
+            </div>
+            <!-- Purchase Modal -->
+<div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="purchaseModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {% if message %}
+            <div class="modal-body">
+               <p>{{ message }}</p>
+            </div>
+            {% endif %}
+            <div class="modal-body">
+                Siz rostdan ham ushbu mahsulotni sotib olmoqchimisiz?
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'buy' product.id %}"><button type="button" class="btn btn-success">Xa, sotib olaman</button></a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
